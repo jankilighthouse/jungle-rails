@@ -6,7 +6,6 @@ class CreateLineItems < ActiveRecord::Migration
       t.integer :quantity
       t.integer :item_price_cents
       t.integer :total_price_cents
-
       t.timestamps null: false
     end
   end
