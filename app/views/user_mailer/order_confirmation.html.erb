@@ -4,11 +4,24 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Your order has been confirmed, <%= @user.firstname %></h1>
-    <h4>You have ordered:</h4><br>
-    <% @order.line_items.each do |item| %>
-    <p><%= item.product.name %></p>
 
+    <h4>  Thank you for shopping with Jungle!, <%= @user.firstname %></h4>
+    <h4>You have ordered:</h4>
+    <% @order.line_items.each do |item| %>
+    <p>Product: <%= item.product.name %></p>
+
+    <p><%= item.product.description %></p>
+    <p>Unit Price :<%= item.product.price %></p>
+    <p>Quantity :<%= item.quantity %></p>
+    <p>Price : <%= item.total_price %></p>
+    <tr>
+          <th colspan="4">
+            TOTAL:
+          </th>
+          <th>
+            <%= @order.total %>
+          </th>
+        </tr>
     <% end %>
   </body>
 </html>

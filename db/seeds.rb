@@ -1,11 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
-
 puts "Seeding Data ..."
 
 # Helper functions
@@ -132,5 +124,62 @@ cat3.products.create!({
   price: 2_483.75
 })
 
+puts "creating User...."
+User.destroy_all
 
-puts "DONE!"
+
+User.create!({
+  firstname: 'Janki',
+  lastname: 'Patel',
+  email:'jankipatel6890@gmail.com',
+  password:'123'
+})
+
+User.create!({
+  firstname: 'Ankit',
+  lastname: 'Patel',
+  email:'abkitpatel6890@gmail.com',
+  password:'1234'
+})
+
+
+puts "Re-creating Reviews ..."
+
+Review.destroy_all
+
+Review.create!({
+  product_id: 2,
+  user_id: 1,
+  description: Faker::Hipster.paragraph(4),
+  rating: 3
+
+})
+
+Review.create!({
+  product_id: 1,
+  user_id: 1,
+  description: Faker::Hipster.paragraph(4),
+  rating: 4
+})
+
+
+Review.create!({
+  product_id: 8,
+  user_id: 1,
+  description: Faker::Hipster.paragraph(4),
+  rating: 4
+})
+
+Review.create!({
+  product_id: 10,
+  user_id: 2,
+  description: Faker::Hipster.paragraph(4),
+  rating: 4
+})
+
+Review.create!({
+  product_id: 12,
+  user_id: 2,
+  description: Faker::Hipster.paragraph(4),
+  rating: 4
+})

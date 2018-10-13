@@ -1,9 +1,7 @@
 <section class="products-show">
-
   <header class="page-header">
     <h1><%= link_to @product.category.name, @product.category %> &raquo; <%= @product.name %></h1>
   </header>
-
   <article class="product-detail">
 
     <div class="row">
@@ -22,6 +20,43 @@
           <dd><%= @product.quantity %></dd>
           <dt>Price</dt>
           <dd><%= @product.price %></dd>
+          </dl>
+
+         <dl class="dl-horizontal">
+          <% @product.reviews.sort_by {|k,v| v}.reverse.each do |review|%>
+          <div>
+            <dt> Reviews By <%= review.user.firstname %>:</dt><br><br>
+            <% if current_user == review.user%>
+
+            <% end %>
+            <dt>Description</dt>
+            <dd><%=review.description %></dd>
+            <dt>Rating</dt>
+            <dd><%= review.rating %></dd>
+            <dd><%= link_to fa_icon('trash'), product_review_path(@product.id, review.id), class: 'btn btn-sm btn-danger', method: :delete, data: { confirm: "Are you sure?" } %></dd>
+            </div>
+          <% end %>
+          </dl>
+
+          <dl class="dl-horizontal">
+          <% if current_user %>
+           <%= form_for [@product, @review] do |form| %>
+
+            <div class="form-group">
+             <dt> <%= form.label :description %></dt>
+              <dd><%= form.text_area :description, id: :review_description %></dd>
+            </div>
+
+            <div class="form-group">
+              <dt><%= form.label :rating %></dt>
+              <dd><%= form.number_field :rating, id: :review_rating %></dd>
+            </div>
+
+            <div class="actions">
+              <dd><%= form.submit %></dd>
+            </div>
+        <% end %>
+        <% end %>
         </dl>
       </div>
     </div>

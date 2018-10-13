@@ -1,6 +1,20 @@
 
-Welcome to example.com, <%= @user.firstname %>
-===============================================
-Thanks for joining and have a great day!
+ Dear customer,
+  Thank you for shopping with Jungle!
+  Your order details:
+
+  <% @order.line_items.each do |item| %>
+  Product:    <%= item.product.name %>
+
+              <%= item.product.description %>
+
+  Unit Price: <%= item.product.price %>
+
+  Quantity:   <%= item.quantity %>
+
+  Price:      <%= item.total_price %>
 
 
+  <% end %>
+
+  TOTAL:      <%= @order.total %>
